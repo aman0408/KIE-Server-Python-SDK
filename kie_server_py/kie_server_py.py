@@ -6,10 +6,19 @@ from requests.auth import HTTPBasicAuth
 
 
 class KIEServerBaseAdapter:
-    def __init__(self, host: str, port: str, auth_username: str, auth_password: str, headers: dict = {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-    }):
+    def __init__(
+        self,
+        host: str,
+        port: str,
+        auth_username: str,
+        auth_password: str,
+        headers: dict = None
+    ):
+        if headers is None:
+            headers = {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            }
         self.host = host
         self.port = port
         self.auth_username = auth_username
